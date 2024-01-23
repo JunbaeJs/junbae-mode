@@ -20,8 +20,9 @@
     "sourceMap": true,
     "inlineSources": true,
     "baseUrl": ".",
-    "outDir": "./dist/cjs",
+    "rootDir": "src",
+    "outDir": "dist",
     "useUnknownInCatchVariables": false,
-    "typeRoots": ["./node_modules/@types", "src/@types"]
-  }
+    "typeRoots": ["./node_modules/@types", "src/@types"],
+  },
 }
