@@ -10,6 +10,6 @@
   "typescript.tsc.autoDetect": "off",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   }
 }
