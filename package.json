@@ -4,8 +4,10 @@
   "version": "0.0.1",
   "description": "Junbae is caique parrot!",
   "main": "./dist/extension.js",
+  "publisher": "JunbaeJs",
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "vscode:package": "vsce package --out package",
     "compile": "tsc -p ./",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -14,6 +16,9 @@
   "engines": {
     "vscode": "^1.85.0"
   },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JunbaeJs/junbae-mode.git"
@@ -33,6 +38,7 @@
     "@types/vscode": "^1.85.0",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
+    "@vscode/vsce": "^2.22.0",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
