@@ -2,7 +2,7 @@
 
 Thank you for showing interest in Junbae-mode and we appreciate any contribution.
 
-## Report a Bug or Feature
+## [Report a Bug or Feature](https://github.com/JunbaeJs/junbae-mode/issues/new/choose)
 
 Whenever you find something which is not working properly, please first search the repository's issue page and make sure it's not reported by someone else already.
 
@@ -25,7 +25,7 @@ git checkout -b [branch name or issue number]
 
 3. Commit your changes
 
-- follow below Commit Convention
+- follow below [Commit Convention](#commit-convention)
 
 ```sh
 # example
@@ -37,7 +37,7 @@ git commit -m "feat:~~"
 4. Push your changes:
 
 ```sh
-git push origin issue-
+git push origin [branch name or issue number]
 ```
 
 </br>
