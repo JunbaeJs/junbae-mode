@@ -2,14 +2,13 @@
 
 Thank you for showing interest in Junbae-mode and we appreciate any contribution.
 
-## [Report a Bug or Feature](https://github.com/JunbaeJs/junbae-mode/issues/new/choose)
+## Report a Bug or Feature
 
 Whenever you find something which is not working properly, please first search the repository's issue page and make sure it's not reported by someone else already.
 
 Before creating an issue, check the `Issue Template` for guidelines. Provide as much detail as possible.
 
-- [bug](.github/ISSUE_TEMPLATE/bug_report.md)
-- [feature](.github/ISSUE_TEMPLATE/feature_request.md)
+You can submit issues with [our issue form](https://github.com/JunbaeJs/junbae-mode/issues/new/choose)
 
 ## Open a PR for Bugfix or Feature
 
