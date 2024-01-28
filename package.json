@@ -70,17 +70,31 @@
         "title": "Hello World"
       }
     ],
-    "configuration": {
-      "title": "General",
-      "order": 0,
-      "properties": {
-        "junbae-mode.enabled": {
-          "order": 0,
-          "default": true,
-          "type": "boolean",
-          "description": "Enable Junbae Mode"
+    "configuration": [
+      {
+        "title": "General",
+        "order": 0,
+        "properties": {
+          "junbae-mode.enabled": {
+            "order": 0,
+            "default": true,
+            "type": "boolean",
+            "description": "Enable Junbae Mode"
+          }
+        }
+      },
+      {
+        "title": "Mode",
+        "order": 1,
+        "properties": {
+          "junbae-mode.mode": {
+            "type": "array",
+            "items": "string",
+            "default": [],
+            "markdownDescription": "mode test"
+          }
         }
       }
-    }
+    ]
   }
 }

@@ -1,14 +1,16 @@
 import * as vscode from 'vscode';
+import { Mode } from './modes/mode.interface';
 
 const configurationSection = ['enabled'] as const;
 type ConfigurationSection = (typeof configurationSection)[number];
-
 export class JunbaeMode {
   // configurations
-  enabled: boolean = true;
+  enabled: boolean = vscode.workspace.getConfiguration('junbae-mode').get('enabled') ?? true;
+
+  modes!: Mode[];
 
   /**
-   * Enables or disables Junbae Mode
+   * Enable or disable Junbae Mode
    * @param enabled
    */
   setEnabled(enabled: boolean) {
@@ -18,7 +20,7 @@ export class JunbaeMode {
   }
 
   /**
-   * Initializes Junbae Mode Configuration
+   * Initialize Junbae Mode Configurations
    */
   init() {
     this.setEnabled(true);
@@ -26,12 +28,16 @@ export class JunbaeMode {
   }
 
   /**
-   * Updates the configuration
+   * Update the configuration
    * @param section
    * @param value
    */
   private updateConfig(section: ConfigurationSection, value: any) {
     const config = vscode.workspace.getConfiguration('junbae-mode');
     config.update(section, value, vscode.ConfigurationTarget.Global);
+  }
+
+  onDidChangeTextDocument(event: vscode.TextDocumentChangeEvent) {
+    this.modes.forEach((mode) => mode.onDidChangeTextDocument(event));
   }
 }
