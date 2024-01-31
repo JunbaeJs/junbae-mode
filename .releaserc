@@ -2,9 +2,6 @@
     "branches": [
       {
         "name": "main"
-      },
-      {
-        "name": "semantic-release"
       }
     ],
     "tagFormat": "v${version}",
