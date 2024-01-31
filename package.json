@@ -66,8 +66,7 @@
         "name": "main"
       },
       {
-        "name": "develop",
-        "prerelease": true
+        "name": "semantic-release"
       }
     ],
     "tagFormat": "v${version}",
