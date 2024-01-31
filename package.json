@@ -63,11 +63,11 @@
   "release": {
     "branches": [
       {
-        "name": "master"
+        "name": "main"
       },
       {
-        "name": "dev",
-        "prerelease": "dev"
+        "name": "develop",
+        "prerelease": true
       }
     ],
     "tagFormat": "v${version}",
@@ -134,6 +134,11 @@
           "presetConfig": {
             "types": [
               {
+                "type": "breaking",
+                "section": "🎇 breaking",
+                "hidden": false
+              },
+              {
                 "type": "docs",
                 "section": "📝 Docs",
                 "hidden": false
@@ -162,11 +167,6 @@
                 "type": "chore",
                 "section": "📦 Chores",
                 "hidden": true
-              },
-              {
-                "type": "ci",
-                "section": "💫 CI/CD",
-                "hidden": false
               },
               {
                 "type": "test",
