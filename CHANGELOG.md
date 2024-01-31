@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/JunbaeJs/junbae-mode/compare/v1.0.0...v1.0.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* edit package.json ([def8e5a](https://github.com/JunbaeJs/junbae-mode/commit/def8e5a72fbac988d6ec9e13675fe3bade911f31))
+
 # 1.0.0 (2024-01-31)
 
 
