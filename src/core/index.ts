@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import { Mode } from './modes/mode.interface';
+import type { Mode } from './modes/mode.interface';
+import { WalkMode } from './modes/walk-mode';
 
 const configurationSection = ['enabled'] as const;
 type ConfigurationSection = (typeof configurationSection)[number];
@@ -7,7 +8,7 @@ export class JunbaeMode {
   // configurations
   enabled: boolean = vscode.workspace.getConfiguration('junbae-mode').get('enabled') ?? true;
 
-  modes!: Mode[];
+  modes: Mode[] = [];
 
   /**
    * Enable or disable Junbae Mode
@@ -23,6 +24,7 @@ export class JunbaeMode {
    * Initialize Junbae Mode Configurations
    */
   init() {
+    this.modes.push(new WalkMode());
     this.setEnabled(true);
     this.updateConfig('enabled', this.enabled);
   }
@@ -37,7 +39,7 @@ export class JunbaeMode {
     config.update(section, value, vscode.ConfigurationTarget.Global);
   }
 
-  onDidChangeTextDocument(event: vscode.TextDocumentChangeEvent) {
+  onDidChangeTextDocument = (event: vscode.TextDocumentChangeEvent) => {
     this.modes.forEach((mode) => mode.onDidChangeTextDocument(event));
-  }
+  };
 }
