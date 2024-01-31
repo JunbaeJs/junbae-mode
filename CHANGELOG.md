@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/JunbaeJs/junbae-mode/compare/v1.0.1...v1.0.2) (2024-01-31)
+
+
+### Bug Fixes
+
+* test for releaserc ([497fe0a](https://github.com/JunbaeJs/junbae-mode/commit/497fe0a4220fdc1f06dee854506a4ff78ecc0edf))
+
 ## [1.0.1](https://github.com/JunbaeJs/junbae-mode/compare/v1.0.0...v1.0.1) (2024-01-31)
 
 
