@@ -10,12 +10,12 @@ permissions:
   contents: read # for checkout
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.11.x]
 
     permissions:
       contents: write # to be able to publish a GitHub release
