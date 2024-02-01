@@ -10,68 +10,83 @@ const motions = [
 ];
 
 export class WalkMode implements Mode {
-  private combo = 0;
+  private current = 0;
+
+  private direction = 1;
+
+  private enabled = false;
 
   private renderedComboCount?: number = undefined;
 
   private renderedRange?: vscode.Range = undefined;
 
-  private comboDecoration?: TextEditorDecorationType;
+  private walkDecoration?: TextEditorDecorationType;
 
   private comboTimerDecorationTimer?: NodeJS.Timeout;
 
-  private comboTimerDecoration?: vscode.TextEditorDecorationType;
+  private timerDcorator?: vscode.TextEditorDecorationType;
 
   private timerDurationInMilliseconds = 0;
 
   private timerExpirationTimestampInMilliseconds = 0;
 
+  constructor() {
+    vscode.window.onDidChangeTextEditorVisibleRanges((e) => {
+      this.updateDecorations(e.textEditor);
+    });
+  }
+
   onDidChangeTextDocument(event: vscode.TextDocumentChangeEvent): void {
-    // const timeLeft = this.timerExpirationTimestampInMilliseconds - new Date().getTime();
-
-    // if (timeLeft <= 0) {
-    //   this.comboDecoration?.dispose();
-    //   return;
-    // }
-
+    if (!this.enabled) {
+      this.enabled = true;
+    }
     const editor = vscode.window.activeTextEditor;
-
     if (!editor) {
       return;
     }
+    this.updateDecorations(editor);
+    if (
+      (this.direction === 1 && this.current === motions.length - 1) ||
+      (this.direction === -1 && this.current === 0)
+    ) {
+      this.direction *= -1;
+    }
+    this.current += this.direction;
+  }
 
+  private updateDecorations(editor: vscode.TextEditor) {
+    if (!this.enabled) {
+      return;
+    }
     const firstVisibleRange = editor.visibleRanges.find((range) => !range.isEmpty);
-    this.combo += 1;
 
-    if (!firstVisibleRange || this.combo < 1) {
-      this.combo = 0;
+    if (!firstVisibleRange) {
       return;
     }
 
     const position = firstVisibleRange.start;
     const range = new vscode.Range(position, position);
 
-    if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
-      this.renderedComboCount = this.combo;
+    if (this.current !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
+      this.renderedComboCount = this.current;
       this.renderedRange = range;
       this.timerDurationInMilliseconds = 5 * 1000;
       this.timerExpirationTimestampInMilliseconds = new Date().getTime() + this.timerDurationInMilliseconds;
-      const ranges = [range];
-      this.createComboCountDecoration(this.combo, ranges, editor);
-      this.createComboTimerDecoration(ranges, editor);
+      this.createWalkMotionDecorator([range], editor);
+      this.createTimeDecoration([range], editor);
     }
   }
 
-  private createComboCountDecoration = (count: number, ranges: vscode.Range[], editor: vscode.TextEditor) => {
+  private createWalkMotionDecorator = (ranges: vscode.Range[], editor: vscode.TextEditor) => {
     const baseCss = WalkMode.objectToCssString({
       width: '50px',
       height: '50px',
       'background-size': 'contain',
       'background-repeat': 'no-repeat',
-      'background-image': `url("${motions[this.combo % motions.length]}")`,
+      'background-image': `url("${motions[this.current % motions.length]}")`,
     });
-    this.comboDecoration?.dispose();
-    this.comboDecoration = vscode.window.createTextEditorDecorationType({
+    this.walkDecoration?.dispose();
+    const decoration = vscode.window.createTextEditorDecorationType({
       // Note: Different decorations cannot use the same pseudoelement
       after: {
         contentText: ``,
@@ -96,7 +111,8 @@ export class WalkMode implements Mode {
       },
       rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
     });
-    editor.setDecorations(this.comboDecoration, ranges);
+    this.walkDecoration = decoration;
+    editor.setDecorations(this.walkDecoration, ranges);
   };
 
   private static objectToCssString(settings: any): string {
@@ -114,7 +130,7 @@ export class WalkMode implements Mode {
     return cssString;
   }
 
-  private createComboTimerDecoration(
+  private createTimeDecoration(
     ranges: vscode.Range[],
     // @ts-expect-error
     editor: vscode.TextEditor = vscode.window.activeTextEditor,
@@ -128,7 +144,7 @@ export class WalkMode implements Mode {
 
       if (timeLeft <= 0) {
         clearTimeout(this.comboTimerDecorationTimer);
-        this.comboTimerDecoration?.dispose();
+        this.timerDcorator?.dispose();
         return;
       }
 
@@ -167,15 +183,15 @@ export class WalkMode implements Mode {
         };
       };
 
-      this.comboTimerDecoration?.dispose();
-      this.comboTimerDecoration = vscode.window.createTextEditorDecorationType({
+      this.timerDcorator?.dispose();
+      this.timerDcorator = vscode.window.createTextEditorDecorationType({
         // Decorations cannot use the same pseudoelement
         ...createComboTimerBeforeDecoration(),
         rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
         light: createComboTimerBeforeDecoration(true),
       });
 
-      editor.setDecorations(this.comboTimerDecoration, ranges);
+      editor.setDecorations(this.timerDcorator, ranges);
     };
 
     this.comboTimerDecorationTimer = setInterval(updateComboTimerDecoration, 50);
