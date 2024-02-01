@@ -50,6 +50,7 @@ git push origin [branch name or issue number]
 ## Commit Convention
 
 ```
+breaking: top-level version bump. used for major framework changes or large-scale project deployments.
 feat: new feature for the user, not a new feature for build script
 fix: bug fix for the user, not a fix to a build script
 docs: changes to the documentation
