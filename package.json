@@ -1,7 +1,7 @@
 {
   "name": "junbae-mode",
   "displayName": "Junbae Mode",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "description": "Junbae is caique parrot!",
   "main": "./dist/extension.js",
   "publisher": "JunbaeJs",
@@ -50,7 +50,11 @@
     "lint-staged": "^15.2.0",
     "semantic-release": "^22.0.12",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^10.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^11.0.4"
   },
   "contributes": {
     "commands": [
@@ -59,11 +63,5 @@
         "title": "Hello World"
       }
     ]
-  },
-  "dependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^10.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/release-notes-generator": "^11.0.4"
   }
 }

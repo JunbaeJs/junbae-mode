@@ -1,7 +1,7 @@
 {
     "branches": [
       {
-        "name": "main"
+        "name": "release"
       }
     ],
     "tagFormat": "v${version}",
@@ -11,10 +11,6 @@
         {
           "preset": "angular",
           "releaseRules": [
-            {
-              "scope": "no-release",
-              "release": false
-            },
             {
               "type": "breaking",
               "release": "major"
@@ -42,10 +38,6 @@
             },
             {
               "type": "chore",
-              "release": false
-            },
-            {
-              "type": "ci",
               "release": false
             },
             {
