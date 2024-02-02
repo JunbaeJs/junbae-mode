@@ -19,6 +19,6 @@ CONTRIBUTORS.md
 tsconfig.json
 tsconfig.build.json
 package-lock.json
-dist/*.map
+dist/**/*.map
 
 node_modules/
