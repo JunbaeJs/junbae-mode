@@ -1,8 +1,8 @@
-name: NodeJS with Webpack
+name: Release on push to release branch
 
 on:
-  pull_request:
-    branches: [ "release" ]
+  push:
+    branches: ['release']
 
 permissions:
   contents: read # for checkout
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          cache: 'npm'
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -39,7 +39,7 @@ jobs:
             ${{ runner.OS }}-
       - name: Package install
         run: npm ci
-      - name: lint 
+      - name: lint
         run: |
           npm run lint
       - name: Release
