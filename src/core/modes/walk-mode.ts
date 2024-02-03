@@ -44,6 +44,9 @@ export class WalkMode implements Mode {
     if (!editor) {
       return;
     }
+
+    this.timerDurationInMilliseconds = 5 * 1000;
+    this.timerExpirationTimestampInMilliseconds = new Date().getTime() + this.timerDurationInMilliseconds;
     this.updateDecorations(editor);
     if (
       (this.direction === 1 && this.current === motions.length - 1) ||
@@ -70,14 +73,19 @@ export class WalkMode implements Mode {
     if (this.current !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
       this.renderedComboCount = this.current;
       this.renderedRange = range;
-      this.timerDurationInMilliseconds = 5 * 1000;
-      this.timerExpirationTimestampInMilliseconds = new Date().getTime() + this.timerDurationInMilliseconds;
       this.createWalkMotionDecorator([range], editor);
       this.createTimeDecoration([range], editor);
     }
   }
 
   private createWalkMotionDecorator = (ranges: vscode.Range[], editor: vscode.TextEditor) => {
+    const timeLeft = this.timerExpirationTimestampInMilliseconds - new Date().getTime();
+
+    if (timeLeft <= 0) {
+      this.dispose();
+      return;
+    }
+
     const baseCss = WalkMode.objectToCssString({
       width: '50px',
       height: '50px',
@@ -130,6 +138,12 @@ export class WalkMode implements Mode {
     return cssString;
   }
 
+  dispose() {
+    this.walkDecoration?.dispose();
+    this.timerDcorator?.dispose();
+    clearTimeout(this.comboTimerDecorationTimer);
+  }
+
   private createTimeDecoration(
     ranges: vscode.Range[],
     // @ts-expect-error
@@ -143,8 +157,7 @@ export class WalkMode implements Mode {
       const timeLeft = this.timerExpirationTimestampInMilliseconds - new Date().getTime();
 
       if (timeLeft <= 0) {
-        clearTimeout(this.comboTimerDecorationTimer);
-        this.timerDcorator?.dispose();
+        this.dispose();
         return;
       }
 
@@ -163,6 +176,7 @@ export class WalkMode implements Mode {
             width: `${timerWidth}em`,
             color: 'white',
             height: '8px',
+            margin: '0.25em 0 0 0',
             textDecoration: `none; ${WalkMode.objectToCssString({
               position: 'absolute',
               // NOTE: This positions the element off the screen when there is horizontal scroll
