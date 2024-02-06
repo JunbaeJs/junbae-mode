@@ -92,11 +92,13 @@
         "title": "Mode",
         "order": 1,
         "properties": {
-          "junbae-mode.mode": {
-            "type": "array",
-            "items": "string",
-            "default": [],
-            "markdownDescription": "mode test"
+          "junbae-mode.Mode": {
+            "type": "string",
+            "default": "Walk",
+            "enum": [
+              "Walk"
+            ],
+            "markdownDescription": "You can choose the mode of Junbae."
           }
         }
       }
