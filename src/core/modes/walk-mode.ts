@@ -48,8 +48,22 @@ export class WalkMode implements Mode {
       return;
     }
 
-    const position = firstVisibleRange.start;
-    const range = new vscode.Range(position, position);
+    let visibleStartLine = firstVisibleRange.start;
+    let visibleEndLine = firstVisibleRange.start;
+    const junbaeLocation = { top: '5%' };
+    const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
+    if (location === 'top') {
+      visibleStartLine = firstVisibleRange.start;
+      visibleEndLine = firstVisibleRange.start;
+    }
+    if (location === 'bottom') {
+      visibleStartLine = firstVisibleRange.end;
+      visibleEndLine = firstVisibleRange.end;
+      junbaeLocation.top = '-100px';
+    }
+    // const position = firstVisibleRange.start;
+    // const range = new vscode.Range(position, position);
+    const range = new vscode.Range(visibleStartLine, visibleEndLine);
 
     if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
       this.renderedComboCount = this.combo;
@@ -57,12 +71,17 @@ export class WalkMode implements Mode {
       this.timerDurationInMilliseconds = 5 * 1000;
       this.timerExpirationTimestampInMilliseconds = new Date().getTime() + this.timerDurationInMilliseconds;
       const ranges = [range];
-      this.createComboCountDecoration(this.combo, ranges, editor);
+      this.createComboCountDecoration(this.combo, ranges, editor, junbaeLocation);
       this.createComboTimerDecoration(ranges, editor);
     }
   }
 
-  private createComboCountDecoration = (count: number, ranges: vscode.Range[], editor: vscode.TextEditor) => {
+  private createComboCountDecoration = (
+    count: number,
+    ranges: vscode.Range[],
+    editor: vscode.TextEditor,
+    junbaeLocation: { top: string },
+  ) => {
     const baseCss = WalkMode.objectToCssString({
       width: '50px',
       height: '50px',
@@ -83,7 +102,8 @@ export class WalkMode implements Mode {
           // so this feature works best when "word wrap" is enabled.
           // Using "5vw" instead did not limit the position to the viewable width.
           right: '5%',
-          top: '5%',
+          // top:'5%',
+          ...junbaeLocation,
           'font-size': '100px',
           'font-family': 'monospace',
           'font-weight': '900',
@@ -139,11 +159,17 @@ export class WalkMode implements Mode {
         'box-shadow': `0px 0px 15px #015dee`,
       });
 
+      let guageColor = vscode.workspace.getConfiguration('junbae-mode').get('guageColor');
+      const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme') as string;
+      if (colorTheme.match('Light')) {
+        guageColor = '#000000';
+      }
+
       const createComboTimerBeforeDecoration = (lightTheme?: boolean): vscode.DecorationRenderOptions => {
         return {
           before: {
             contentText: '',
-            backgroundColor: 'white',
+            backgroundColor: `${guageColor}`,
             width: `${timerWidth}em`,
             color: 'white',
             height: '8px',
