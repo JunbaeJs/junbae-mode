@@ -12,17 +12,10 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  const disposable = vscode.commands.registerCommand('junbae-mode.helloWorld', () => {
-    // The code you place here will be executed every time your command is executed
-    // Display a message box to the user
-    if (mode.enabled) {
-      vscode.window.showInformationMessage('Hello World from Junbae Mode!🦜');
-    }
-  });
   const enable = vscode.commands.registerCommand('junbae-mode.enable', () => mode.setEnabled(true));
   const disable = vscode.commands.registerCommand('junbae-mode.disable', () => mode.setEnabled(false));
+  vscode.workspace.onDidChangeTextDocument(mode.onDidChangeTextDocument);
 
-  context.subscriptions.push(disposable);
   context.subscriptions.push(enable);
   context.subscriptions.push(disable);
 }
