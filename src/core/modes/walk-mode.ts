@@ -75,9 +75,6 @@ export class WalkMode implements Mode {
       junbaeLocation['font-size'] = '100px';
     }
 
-    // const position = firstVisibleRange.start;
-    // const range = new vscode.Range(position, position);
-
     const range = new vscode.Range(visibleStartLine, visibleEndLine);
 
     if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
@@ -114,9 +111,7 @@ export class WalkMode implements Mode {
           'background-image': `url("${motions[this.combo % motions.length]}")`,
           position: 'absolute',
           right: '5vw',
-          // top: '5%',
           ...junbaeLocation,
-          // 'font-size': '50px',
           'font-family': 'monospace',
           'font-weight': '900',
           'z-index': 1,
@@ -148,7 +143,12 @@ export class WalkMode implements Mode {
         this.dispose();
         return;
       }
-      const gaugeColor = vscode.workspace.getConfiguration('junbae-mode').get('gaugeColor');
+      const gaugeColorName = vscode.workspace.getConfiguration('junbae-mode').get('gaugeColor');
+      let gaugeColor = 'white';
+      if (gaugeColorName === 'red') {
+        gaugeColor = '#C54B65';
+      }
+
       const timerWidth = (timeLeft / this.timerDuration) * 1.5;
 
       this.timerDecorator?.dispose();
