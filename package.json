@@ -92,6 +92,24 @@
             "items": "string",
             "default": [],
             "markdownDescription": "mode test"
+          },
+          "junbae-mode.location": {
+            "type": "string",
+            "default": "top",
+            "enum": [
+              "top",
+              "bottom"
+            ],
+            "markdownDescription": "Junbae is located on the screen"
+          },
+          "junbae-mode.gaugeColor": {
+            "type": "string",
+            "default": "white",
+            "enum": [
+              "white",
+              "#C54B65"
+            ],
+            "markdownDescription": "gauge color change"
           }
         }
       }

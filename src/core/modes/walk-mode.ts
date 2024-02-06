@@ -59,18 +59,39 @@ export class WalkMode implements Mode {
       return;
     }
 
-    const position = firstVisibleRange.start;
-    const range = new vscode.Range(position, position);
+    let visibleStartLine = firstVisibleRange.start;
+    let visibleEndLine = firstVisibleRange.start;
+    const junbaeLocation = { top: '5%' };
+    const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
+
+    if (location === 'top') {
+      visibleStartLine = firstVisibleRange.start;
+      visibleEndLine = firstVisibleRange.start;
+    }
+    if (location === 'bottom') {
+      visibleStartLine = firstVisibleRange.end;
+      visibleEndLine = firstVisibleRange.end;
+      junbaeLocation.top = '-100px';
+    }
+
+    // const position = firstVisibleRange.start;
+    // const range = new vscode.Range(position, position);
+
+    const range = new vscode.Range(visibleStartLine, visibleEndLine);
 
     if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
       this.renderedComboCount = this.combo;
       this.renderedRange = range;
-      this.createWalkMotionDecorator([range], editor);
+      this.createWalkMotionDecorator([range], editor, junbaeLocation);
       this.createTimerDecoration([range], editor);
     }
   }
 
-  private createWalkMotionDecorator = (ranges: vscode.Range[], editor: vscode.TextEditor) => {
+  private createWalkMotionDecorator = (
+    ranges: vscode.Range[],
+    editor: vscode.TextEditor,
+    junbaeLocation: { top: string },
+  ) => {
     const timeLeft = this.expiredAt - new Date().getTime();
 
     if (timeLeft <= 0) {
@@ -92,7 +113,8 @@ export class WalkMode implements Mode {
           'background-image': `url("${motions[this.combo % motions.length]}")`,
           position: 'absolute',
           right: '5vw',
-          top: '5%',
+          // top: '5%',
+          ...junbaeLocation,
           'font-size': '100px',
           'font-family': 'monospace',
           'font-weight': '900',
@@ -125,14 +147,14 @@ export class WalkMode implements Mode {
         this.dispose();
         return;
       }
-
+      const gaugeColor = vscode.workspace.getConfiguration('junbae-mode').get('gaugeColor');
       const timerWidth = (timeLeft / this.timerDuration) * 1.5;
 
       this.timerDecorator?.dispose();
       this.timerDecorator = vscode.window.createTextEditorDecorationType({
         before: {
           contentText: '',
-          backgroundColor: 'white',
+          backgroundColor: `${gaugeColor}`,
           width: `${timerWidth}em`,
           color: 'white',
           height: '8px',
