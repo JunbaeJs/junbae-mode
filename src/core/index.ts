@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Mode } from './modes/mode.interface';
+import type { Mode } from './modes/mode.interface';
 
 const configurationSection = ['enabled'] as const;
 type ConfigurationSection = (typeof configurationSection)[number];
