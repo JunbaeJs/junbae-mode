@@ -61,7 +61,7 @@ export class WalkMode implements Mode {
 
     let visibleStartLine = firstVisibleRange.start;
     let visibleEndLine = firstVisibleRange.start;
-    const junbaeLocation = { top: '5%' };
+    const junbaeLocation = { top: '5%', 'font-size': '50px' };
     const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
 
     if (location === 'top') {
@@ -72,6 +72,7 @@ export class WalkMode implements Mode {
       visibleStartLine = firstVisibleRange.end;
       visibleEndLine = firstVisibleRange.end;
       junbaeLocation.top = '-100px';
+      junbaeLocation['font-size'] = '100px';
     }
 
     // const position = firstVisibleRange.start;
@@ -115,7 +116,7 @@ export class WalkMode implements Mode {
           right: '5vw',
           // top: '5%',
           ...junbaeLocation,
-          'font-size': '100px',
+          // 'font-size': '50px',
           'font-family': 'monospace',
           'font-weight': '900',
           'z-index': 1,
