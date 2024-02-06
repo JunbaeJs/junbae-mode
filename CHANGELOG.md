@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/JunbaeJs/junbae-mode/compare/v1.0.0...v1.1.0) (2024-02-06)
+
+
+### Bug Fixes
+
+* remove useless function ([8c79702](https://github.com/JunbaeJs/junbae-mode/commit/8c79702e9189e492dae02515671056139101ca1e))
+
+
+### Features
+
+* mode base interface ([30749aa](https://github.com/JunbaeJs/junbae-mode/commit/30749aab2e3534a5aec7de83b848170ae355daa2))
+
 # 1.0.0 (2024-02-02)
 
 
