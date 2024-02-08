@@ -88,7 +88,7 @@ export class WalkMode implements Mode {
   private createWalkMotionDecorator = (
     ranges: vscode.Range[],
     editor: vscode.TextEditor,
-    junbaeLocation: { top: string },
+    junbaeLocation: { top: string; ['font-size']: string },
   ) => {
     const timeLeft = this.expiredAt - new Date().getTime();
 
