@@ -92,12 +92,14 @@
         "title": "Mode",
         "order": 1,
         "properties": {
-          "junbae-mode.mode": {
+          "junbae-mode.Mode": {
             "order": 0,
-            "type": "array",
-            "items": "string",
-            "default": [],
-            "markdownDescription": "mode test"
+            "type": "string",
+            "default": "Walk",
+            "enum": [
+              "Walk"
+            ],
+            "markdownDescription": "You can choose the mode of Junbae."
           },
           "junbae-mode.location": {
             "order": 1,
@@ -118,14 +120,6 @@
               "red"
             ],
             "markdownDescription": "timer color change"
-          },
-          "junbae-mode.Mode": {
-            "type": "string",
-            "default": "Walk",
-            "enum": [
-              "Walk"
-            ],
-            "markdownDescription": "You can choose the mode of Junbae."
           }
         }
       }
