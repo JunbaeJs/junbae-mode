@@ -1,4 +1,4 @@
-name: Release on push to release branch
+name: ci when pull request
 
 on:
   pull_request:
