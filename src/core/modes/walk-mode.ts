@@ -29,6 +29,7 @@ export class WalkMode implements Mode {
   private expiredAt = 0;
 
   constructor() {
+    this.enabled = vscode.workspace.getConfiguration('junbae-mode').get('Mode') === 'Walk';
     vscode.window.onDidChangeTextEditorVisibleRanges((e) => {
       this.updateDecorations(e.textEditor);
     });
@@ -36,7 +37,7 @@ export class WalkMode implements Mode {
 
   onDidChangeTextDocument(event: vscode.TextDocumentChangeEvent): void {
     if (!this.enabled) {
-      this.enabled = true;
+      return;
     }
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
