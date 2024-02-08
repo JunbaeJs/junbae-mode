@@ -139,10 +139,10 @@ export class WalkMode implements Mode {
         this.dispose();
         return;
       }
-      const gaugeColorName = vscode.workspace.getConfiguration('junbae-mode').get('gaugeColor');
-      let gaugeColor = 'white';
-      if (gaugeColorName === 'red') {
-        gaugeColor = '#C54B65';
+      const timerColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
+      let timerColor = 'white';
+      if (timerColorName === 'red') {
+        timerColor = '#C54B65';
       }
 
       const timerWidth = (timeLeft / this.timerDuration) * 1.5;
@@ -151,7 +151,7 @@ export class WalkMode implements Mode {
       this.timerDecorator = vscode.window.createTextEditorDecorationType({
         before: {
           contentText: '',
-          backgroundColor: `${gaugeColor}`,
+          backgroundColor: `${timerColor}`,
           width: `${timerWidth}em`,
           color: 'white',
           height: '8px',

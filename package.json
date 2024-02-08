@@ -104,7 +104,7 @@
             ],
             "markdownDescription": "Junbae is located on the screen"
           },
-          "junbae-mode.gaugeColor": {
+          "junbae-mode.timerColor": {
             "order": 2,
             "type": "string",
             "default": "white",
@@ -112,7 +112,7 @@
               "white",
               "red"
             ],
-            "markdownDescription": "gauge color change"
+            "markdownDescription": "timer color change"
           }
         }
       }
