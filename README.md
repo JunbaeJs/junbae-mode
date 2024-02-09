@@ -33,7 +33,6 @@ Enchanted by Junbae's cuteness, we often think of Junbae even when coding.<br/>
 That's why we created the Junbae mode, so you can see Junbae while coding too!<br/>
 Come and fall in love with Junbae's cuteness together!
 
-
 ## Who is using Junbae Mode?
 
 - Those who want to be captivated by the charm of cute Junbae while coding!
@@ -42,18 +41,18 @@ Come and fall in love with Junbae's cuteness together!
 - Those who want to be noticed at work!
 
 ## Warning
+
 Junbae doesn't directly help you with your development or improve your skills.<br/>
 Be careful not to get too caught up with Junbae and forget your tasks.
 
 But wasn't it adorable?
-
 
 ## Contributing
 
 If you want to contribute to Junbae Mode, please check our [CONTRIBUTING.md](/CONTRIBUTING.md) document!
 
 ## Authors
+
 - [Arthur Hwang](https://github.com/changchanghwang)
 - [Myunggyuns](https://github.com/myunggyuns)
 - [Sunnieee](https://github.com/sunnieeeYoon)
-
