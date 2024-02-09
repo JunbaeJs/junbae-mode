@@ -1,18 +1,18 @@
-<p align="center">
+<div align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=JunbaeJs.junbae-mode&ssr=false#overview">
     <img src="../junbae-mode/images/junbae_logo.png" height="128">
     <h1 align="center">Junbae Mode</h1>
   </a>
-</p>
+</div>
 
-<p align="center">
+<div align="center">
   <a aria-label="License" href="https://github.com/JunbaeJs/junbae-mode/blob/main/LICENSE">
     <img alt="" src="https://img.shields.io/npm/l/next.svg?style=for-the-badge&labelColor=000000">
   </a>
   <a aria-label="Join the community on GitHub" href="https://github.com/JunbaeJs/junbae-mode">
     <img alt="" src="https://img.shields.io/badge/Junbae%20Mode%20-blueviolet.svg?style=for-the-badge&logo=Github&labelColor=000000&logoWidth=20">
   </a>
-</p>
+</div>
 
 ## Getting Started
 키보드를 활용해 타이핑을 할 때마다 귀여운 준배가 당신과 함께 합니다.<br/>
@@ -26,7 +26,8 @@
 저희의 마스코트인 아주아주 귀여운 준배를 소개합니다!<br/>
 준배는 카이큐 앵무새이고, 아주 귀엽죠.<br/>
 주황색 머리와 하얀색 배, 초록색 등을 가진 아주 귀여운 앵무새에요. <br/>
-준배는 [Arthur Hwang](https://github.com/changchanghwang)의 반려앵무이고, 여자아이에요. 이제 1살이 되었죠.<br/> 
+준배는 [Arthur Hwang](https://github.com/changchanghwang)의 반려앵무이고, 여자아이에요.<br/>
+23년 12월 3일에 태어나, 이제 1살이 되었죠.<br/> 
 그리고 아주 귀엽고, 귀엽고 또 귀엽습니다. <br/>
 
 준배의 귀여운 매력에 빠져, 저희는 코딩할 때도 준배를 떠올리는 날들이 많았습니다.<br/>

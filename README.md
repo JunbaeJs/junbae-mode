@@ -1,22 +1,22 @@
-<p align="center">
+<div align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=JunbaeJs.junbae-mode&ssr=false#overview">
     <img src="../junbae-mode/images/junbae_logo.png" height="128">
     <h1 align="center">Junbae Mode</h1>
   </a>
-</p>
+</div>
 
-<p align="center">
+<div align="center">
   <a aria-label="License" href="https://github.com/JunbaeJs/junbae-mode/blob/main/LICENSE">
     <img alt="" src="https://img.shields.io/npm/l/next.svg?style=for-the-badge&labelColor=000000">
   </a>
   <a aria-label="Join the community on GitHub" href="https://github.com/JunbaeJs/junbae-mode">
     <img alt="" src="https://img.shields.io/badge/Junbae%20Mode%20-blueviolet.svg?style=for-the-badge&logo=Github&labelColor=000000&logoWidth=20">
   </a>
-</p>
+</div>
 
 ## Getting Started
 
-Whenever you use the keyboard, the adorable Junbae will be with you.<br/>
+Whenever you type, the adorable Junbae will be with you.<br/>
 Overcome the dull coding life by becoming Junbae's aunt/uncle.<br/>
 You can enjoy various appearances of Junbae depending on the mode!
 
@@ -27,11 +27,11 @@ Download and try [Junbae Mode](https://marketplace.visualstudio.com/items?itemNa
 Let us introduce our mascot, the incredibly cute Junbae!<br/>
 Junbae is a caique parrot, and oh so adorable.<br/>
 With an orange head, white belly, and green feathers, Junbae is an incredibly cute parrot.<br/>
-Junbae is Arthur Hwang's pet parrot, and she is a girl. She has just turned one year old.
+Born on December 3, 2023, Junbae has just turned one year old. She is Arthur Hwang's pet parrot.
 
-Enchanted by Junbae's cuteness, we often think of Junbae even when coding.<br/>
-That's why we created the Junbae mode, so you can see Junbae while coding too!<br/>
-Come and fall in love with Junbae's cuteness together!
+Enchanted by Junbae's charm, we often find ourselves thinking of her even while coding.<br/>
+That's why we've introduced the Junbae mode, allowing you to enjoy Junbae's presence during typing.<br/>
+Come and immerse yourself in the adorable allure of Junbae together!
 
 
 ## Who is using Junbae Mode?
@@ -45,7 +45,7 @@ Come and fall in love with Junbae's cuteness together!
 Junbae doesn't directly help you with your development or improve your skills.<br/>
 Be careful not to get too caught up with Junbae and forget your tasks.
 
-But wasn't it adorable?
+But isn't it adorable?
 
 
 ## Contributing
