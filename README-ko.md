@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=JunbaeJs.junbae-mode&ssr=false#overview">
-    <img src="../junbae-mode/images/junbae_logo.png" height="128">
+    <img src="https://github.com/JunbaeJs/junbae-mode/blob/main/images/junbae_logo.png?raw=true" height="128">
     <h1 align="center">Junbae Mode</h1>
   </a>
 </div>
