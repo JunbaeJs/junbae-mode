@@ -47,7 +47,6 @@ Be careful not to get too caught up with Junbae and forget your tasks.
 
 But isn't it adorable?
 
-
 ## Contributing
 
 If you want to contribute to Junbae Mode, please check our [CONTRIBUTING.md](/CONTRIBUTING.md) document!
