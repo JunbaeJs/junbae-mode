@@ -1,7 +1,7 @@
 {
   "name": "junbae-mode",
   "displayName": "Junbae Mode",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Junbae is caique parrot!",
   "main": "./dist/extension.js",
   "publisher": "JunbaeJs",
