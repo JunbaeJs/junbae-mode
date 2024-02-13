@@ -60,9 +60,9 @@ export class WalkMode implements Mode {
       return;
     }
 
-    const { junbaeLocation, timerLocation, visibleStartLine, visibleEndLine } = this.getLocation(firstVisibleRange);
+    const { junbaeLocation, timerLocation, range } = this.getLocation(firstVisibleRange);
 
-    const range = new vscode.Range(visibleStartLine, visibleEndLine);
+    // const range = new vscode.Range(visibleStartLine, visibleEndLine);
 
     if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
       this.renderedComboCount = this.combo;
@@ -131,19 +131,7 @@ export class WalkMode implements Mode {
         return;
       }
 
-      let timerColor = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
-
-      if (timerColor === 'red') {
-        timerColor = '#C54B65';
-      }
-
-      let timerShadowColor = vscode.workspace.getConfiguration('junbae-mode').get('timerShadowColor');
-
-      if (timerShadowColor === 'blue') {
-        timerShadowColor = '#015dee';
-      } else if (timerShadowColor === 'purple') {
-        timerShadowColor = '#A485B3';
-      }
+      const { timerColor, timerShadowColor } = this.getTimerColor();
 
       const timerWidth = (timeLeft / this.timerDuration) * 1.5;
       this.timerDecorator?.dispose();
@@ -190,6 +178,25 @@ export class WalkMode implements Mode {
       timerLocation.bottom = '70px';
     }
 
-    return { junbaeLocation, timerLocation, visibleStartLine, visibleEndLine };
+    const range = new vscode.Range(visibleStartLine, visibleEndLine);
+
+    return { junbaeLocation, timerLocation, range };
+  }
+
+  private getTimerColor() {
+    const timerColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
+    const timerColor = {
+      timerColor: 'white',
+      timerShadowColor: '#015dee',
+    };
+
+    if (timerColorName === 'white') {
+      timerColor.timerColor = 'white';
+      timerColor.timerShadowColor = '#015dee';
+    } else if (timerColorName === 'red') {
+      timerColor.timerColor = '#C54B65';
+      timerColor.timerShadowColor = '#FFC0CB';
+    }
+    return timerColor;
   }
 }

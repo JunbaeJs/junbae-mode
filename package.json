@@ -120,16 +120,6 @@
               "red"
             ],
             "markdownDescription": "You can choose timer color."
-          },
-          "junbae-mode.timerShadowColor": {
-            "order": 3,
-            "type": "string",
-            "default": "blue",
-            "enum": [
-              "blue",
-              "purple"
-            ],
-            "markdownDescription": "You can choose timer shadow color."
           }
         }
       }
