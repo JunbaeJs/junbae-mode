@@ -60,21 +60,7 @@ export class WalkMode implements Mode {
       return;
     }
 
-    let visibleStartLine = firstVisibleRange.start;
-    let visibleEndLine = firstVisibleRange.start;
-    const junbaeLocation = { top: '5%', 'font-size': '50px', bottom: 'none' };
-    const timerLocation = { top: '5%', bottom: 'none' };
-    const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
-
-    if (location === 'bottom') {
-      visibleStartLine = firstVisibleRange.end;
-      visibleEndLine = firstVisibleRange.end;
-      junbaeLocation.top = 'none';
-      junbaeLocation.bottom = '10px';
-      junbaeLocation['font-size'] = '100px';
-      timerLocation.top = 'none';
-      timerLocation.bottom = '70px';
-    }
+    const { junbaeLocation, timerLocation, visibleStartLine, visibleEndLine } = this.getLocation(firstVisibleRange);
 
     const range = new vscode.Range(visibleStartLine, visibleEndLine);
 
@@ -184,5 +170,26 @@ export class WalkMode implements Mode {
     };
 
     this.decorationTimer = setInterval(updateComboTimerDecoration, 50);
+  }
+
+  private getLocation(firstVisibleRange: vscode.Range) {
+    const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
+
+    let visibleStartLine = firstVisibleRange.start;
+    let visibleEndLine = firstVisibleRange.start;
+    const junbaeLocation = { top: '5%', 'font-size': '50px', bottom: 'none' };
+    const timerLocation = { top: '5%', bottom: 'none' };
+
+    if (location === 'bottom') {
+      visibleStartLine = firstVisibleRange.end;
+      visibleEndLine = firstVisibleRange.end;
+      junbaeLocation.top = 'none';
+      junbaeLocation.bottom = '10px';
+      junbaeLocation['font-size'] = '100px';
+      timerLocation.top = 'none';
+      timerLocation.bottom = '70px';
+    }
+
+    return { junbaeLocation, timerLocation, visibleStartLine, visibleEndLine };
   }
 }
