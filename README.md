@@ -33,7 +33,6 @@ Enchanted by Junbae's charm, we often find ourselves thinking of her even while 
 That's why we've introduced the Junbae mode, allowing you to enjoy Junbae's presence during typing.<br/>
 Come and immerse yourself in the adorable allure of Junbae together!
 
-
 ## Who is using Junbae Mode?
 
 - Those who want to be captivated by the charm of cute Junbae while coding!
