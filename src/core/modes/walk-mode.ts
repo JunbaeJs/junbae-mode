@@ -188,13 +188,11 @@ export class WalkMode implements Mode {
       timerShadowColor: '#015dee',
     };
 
-    if (timerColorName === 'white') {
-      timerColors.timerColor = 'white';
-      timerColors.timerShadowColor = '#015dee';
-    } else if (timerColorName === 'red') {
+    if (timerColorName === 'red') {
       timerColors.timerColor = '#C54B65';
       timerColors.timerShadowColor = '#FFC0CB';
     }
+    
     return timerColors;
   }
 }
