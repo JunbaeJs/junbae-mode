@@ -144,16 +144,18 @@ export class WalkMode implements Mode {
         this.dispose();
         return;
       }
-      const timerColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
-      const timerShadowColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerShadowColor');
 
-      let timerColor = 'white';
-      let timerShadowColor = '#015dee';
+      let timerColor = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
 
-      if (timerColorName === 'red') {
+      if (timerColor === 'red') {
         timerColor = '#C54B65';
       }
-      if (timerShadowColorName === 'purple') {
+
+      let timerShadowColor = vscode.workspace.getConfiguration('junbae-mode').get('timerShadowColor');
+
+      if (timerShadowColor === 'blue') {
+        timerShadowColor = '#015dee';
+      } else if (timerShadowColor === 'purple') {
         timerShadowColor = '#A485B3';
       }
 
