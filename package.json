@@ -120,6 +120,16 @@
               "red"
             ],
             "markdownDescription": "timer color change"
+          },
+          "junbae-mode.timerShadowColor": {
+            "order": 3,
+            "type": "string",
+            "default": "blue",
+            "enum": [
+              "blue",
+              "purple"
+            ],
+            "markdownDescription": "timer shadow color change"
           }
         }
       }
