@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=JunbaeJs.junbae-mode&ssr=false#overview">
-    <img src="../junbae-mode/images/junbae_logo.png" height="128">
+    <img src="images/junbae_logo.png" height="128">
     <h1 align="center">Junbae Mode</h1>
   </a>
 </div>
@@ -41,7 +41,6 @@ Come and immerse yourself in the adorable allure of Junbae together!
 - Those who want to be noticed at work!
 
 ## Warning
-
 Junbae doesn't directly help you with your development or improve your skills.<br/>
 Be careful not to get too caught up with Junbae and forget your tasks.
 
@@ -52,7 +51,7 @@ But isn't it adorable?
 If you want to contribute to Junbae Mode, please check our [CONTRIBUTING.md](/CONTRIBUTING.md) document!
 
 ## Authors
-
 - [Arthur Hwang](https://github.com/changchanghwang)
 - [Myunggyuns](https://github.com/myunggyuns)
 - [Sunnieee](https://github.com/sunnieeeYoon)
+
