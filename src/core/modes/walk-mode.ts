@@ -62,16 +62,18 @@ export class WalkMode implements Mode {
 
     let visibleStartLine = firstVisibleRange.start;
     let visibleEndLine = firstVisibleRange.start;
-    const junbaeLocation = { top: '5%', 'font-size': '50px' };
-    const timerLocation = { top: '5%' };
+    const junbaeLocation = { top: '5%', 'font-size': '50px', bottom: 'none' };
+    const timerLocation = { top: '5%', bottom: 'none' };
     const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
 
     if (location === 'bottom') {
       visibleStartLine = firstVisibleRange.end;
       visibleEndLine = firstVisibleRange.end;
-      junbaeLocation.top = '-100px';
+      junbaeLocation.top = 'none';
+      junbaeLocation.bottom = '10px';
       junbaeLocation['font-size'] = '100px';
-      timerLocation.top = '-75px';
+      timerLocation.top = 'none';
+      timerLocation.bottom = '70px';
     }
 
     const range = new vscode.Range(visibleStartLine, visibleEndLine);
@@ -87,7 +89,7 @@ export class WalkMode implements Mode {
   private createWalkMotionDecorator = (
     ranges: vscode.Range[],
     editor: vscode.TextEditor,
-    junbaeLocation: { top: string; ['font-size']: string },
+    junbaeLocation: { top: string; ['font-size']: string; bottom: string },
   ) => {
     const timeLeft = this.expiredAt - new Date().getTime();
 
@@ -130,7 +132,11 @@ export class WalkMode implements Mode {
     clearTimeout(this.decorationTimer);
   }
 
-  private createTimerDecoration(ranges: vscode.Range[], editor: vscode.TextEditor, timerLocation: { top: string }) {
+  private createTimerDecoration(
+    ranges: vscode.Range[],
+    editor: vscode.TextEditor,
+    timerLocation: { top: string; bottom: string },
+  ) {
     if (this.decorationTimer) {
       clearTimeout(this.decorationTimer);
     }
