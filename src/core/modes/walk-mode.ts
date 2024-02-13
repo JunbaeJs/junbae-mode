@@ -63,6 +63,7 @@ export class WalkMode implements Mode {
     let visibleStartLine = firstVisibleRange.start;
     let visibleEndLine = firstVisibleRange.start;
     const junbaeLocation = { top: '5%', 'font-size': '50px' };
+    const timerLocation = { top: '5%' };
     const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
 
     if (location === 'bottom') {
@@ -70,6 +71,7 @@ export class WalkMode implements Mode {
       visibleEndLine = firstVisibleRange.end;
       junbaeLocation.top = '-100px';
       junbaeLocation['font-size'] = '100px';
+      timerLocation.top = '-75px';
     }
 
     const range = new vscode.Range(visibleStartLine, visibleEndLine);
@@ -78,7 +80,7 @@ export class WalkMode implements Mode {
       this.renderedComboCount = this.combo;
       this.renderedRange = range;
       this.createWalkMotionDecorator([range], editor, junbaeLocation);
-      this.createTimerDecoration([range], editor);
+      this.createTimerDecoration([range], editor, timerLocation);
     }
   }
 
@@ -128,7 +130,7 @@ export class WalkMode implements Mode {
     clearTimeout(this.decorationTimer);
   }
 
-  private createTimerDecoration(ranges: vscode.Range[], editor: vscode.TextEditor) {
+  private createTimerDecoration(ranges: vscode.Range[], editor: vscode.TextEditor, timerLocation: { top: string }) {
     if (this.decorationTimer) {
       clearTimeout(this.decorationTimer);
     }
@@ -142,18 +144,18 @@ export class WalkMode implements Mode {
       }
       const timerColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
       const timerShadowColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerShadowColor');
+
       let timerColor = 'white';
-      let timerShadowColor = '015dee';
+      let timerShadowColor = '#015dee';
+
       if (timerColorName === 'red') {
         timerColor = '#C54B65';
       }
-
       if (timerShadowColorName === 'purple') {
         timerShadowColor = '#A485B3';
       }
 
       const timerWidth = (timeLeft / this.timerDuration) * 1.5;
-
       this.timerDecorator?.dispose();
       this.timerDecorator = vscode.window.createTextEditorDecorationType({
         before: {
@@ -167,7 +169,7 @@ export class WalkMode implements Mode {
             'box-shadow': `0px 0px 15px ${timerShadowColor}`,
             position: 'absolute',
             right: '5vw',
-            top: '5%',
+            ...timerLocation,
             'font-size': '40px',
             'font-family': 'monospace',
             'font-weight': '900',
