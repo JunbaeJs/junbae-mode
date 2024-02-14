@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JunbaeJs/junbae-mode.git"
+    "url": "https://github.com/JunbaeJs/junbae-mode.git"
   },
   "keywords": [
     "vscode",
