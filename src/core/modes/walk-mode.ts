@@ -145,7 +145,7 @@ export class WalkMode implements Mode {
 
       const { timerColor, timerShadowColor } = this.getTimerColor();
 
-      const timerWidth = (timeLeft / this.timerDuration) * 1.5;
+      const timerWidth = (timeLeft / this.timerDuration) * 4;
       this.timerDecorator?.dispose();
       this.timerDecorator = vscode.window.createTextEditorDecorationType({
         before: {
