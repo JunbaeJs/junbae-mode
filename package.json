@@ -93,12 +93,33 @@
         "order": 1,
         "properties": {
           "junbae-mode.Mode": {
+            "order": 0,
             "type": "string",
             "default": "Walk",
             "enum": [
               "Walk"
             ],
             "markdownDescription": "You can choose the mode of Junbae."
+          },
+          "junbae-mode.location": {
+            "order": 1,
+            "type": "string",
+            "default": "top",
+            "enum": [
+              "top",
+              "bottom"
+            ],
+            "markdownDescription": "You can choose location of junbae on the screen."
+          },
+          "junbae-mode.timerColor": {
+            "order": 2,
+            "type": "string",
+            "default": "white",
+            "enum": [
+              "white",
+              "red"
+            ],
+            "markdownDescription": "You can choose timer color."
           }
         }
       }
