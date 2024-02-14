@@ -62,8 +62,6 @@ export class WalkMode implements Mode {
 
     const { junbaeLocation, timerLocation, range } = this.getLocation(firstVisibleRange);
 
-    // const range = new vscode.Range(visibleStartLine, visibleEndLine);
-
     if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
       this.renderedComboCount = this.combo;
       this.renderedRange = range;
@@ -185,18 +183,16 @@ export class WalkMode implements Mode {
 
   private getTimerColor() {
     const timerColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
-    const timerColor = {
+    const timerColors = {
       timerColor: 'white',
       timerShadowColor: '#015dee',
     };
 
-    if (timerColorName === 'white') {
-      timerColor.timerColor = 'white';
-      timerColor.timerShadowColor = '#015dee';
-    } else if (timerColorName === 'red') {
-      timerColor.timerColor = '#C54B65';
-      timerColor.timerShadowColor = '#FFC0CB';
+    if (timerColorName === 'red') {
+      timerColors.timerColor = '#C54B65';
+      timerColors.timerShadowColor = '#FFC0CB';
     }
-    return timerColor;
+    
+    return timerColors;
   }
 }
