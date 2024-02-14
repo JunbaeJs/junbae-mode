@@ -9,6 +9,18 @@ const motions = [
   'data:image/png;base64,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',
   'data:image/png;base64,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',
 ];
+
+type Location = {
+  range: vscode.Range;
+  junbaeLocation: { 'font-size': string } & XOR<{ top: string }, { bottom: string }>;
+  timerLocation: XOR<{ top: string }, { bottom: string }>;
+};
+
+type TimerColor = {
+  timerColor: string;
+  timerShadowColor: string;
+};
+
 export class WalkMode implements Mode {
   private combo = 0;
 
@@ -60,18 +72,21 @@ export class WalkMode implements Mode {
       return;
     }
 
-    const position = firstVisibleRange.start;
-    const range = new vscode.Range(position, position);
+    const { junbaeLocation, timerLocation, range } = this.getLocation(firstVisibleRange);
 
     if (this.combo !== this.renderedComboCount || !range.isEqual(this.renderedRange!)) {
       this.renderedComboCount = this.combo;
       this.renderedRange = range;
-      this.createWalkMotionDecorator([range], editor);
-      this.createTimerDecoration([range], editor);
+      this.createWalkMotionDecorator([range], editor, junbaeLocation);
+      this.createTimerDecoration([range], editor, timerLocation);
     }
   }
 
-  private createWalkMotionDecorator = (ranges: vscode.Range[], editor: vscode.TextEditor) => {
+  private createWalkMotionDecorator = (
+    ranges: vscode.Range[],
+    editor: vscode.TextEditor,
+    junbaeLocation: Location['junbaeLocation'],
+  ) => {
     const timeLeft = this.expiredAt - new Date().getTime();
 
     if (timeLeft <= 0) {
@@ -84,7 +99,6 @@ export class WalkMode implements Mode {
       after: {
         contentText: ``,
         margin: '0.5em 0 0 0',
-        color: '#FFFFFF',
         textDecoration: `none; ${objectToCssString({
           width: '50px',
           height: '50px',
@@ -92,14 +106,14 @@ export class WalkMode implements Mode {
           'background-repeat': 'no-repeat',
           'background-image': `url("${motions[this.combo % motions.length]}")`,
           position: 'absolute',
+          /**
+           * NOTE: Junbae go out of screen when horizontal scroll
+           * If you want to limit position of Junbae, use `%`
+           */
           right: '5vw',
-          top: '5%',
-          'font-size': '100px',
-          'font-family': 'monospace',
-          'font-weight': '900',
+          ...junbaeLocation,
           'z-index': 1,
           'pointer-events': 'none',
-          'text-align': 'center',
         })}`,
       },
       rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
@@ -114,7 +128,11 @@ export class WalkMode implements Mode {
     clearTimeout(this.decorationTimer);
   }
 
-  private createTimerDecoration(ranges: vscode.Range[], editor: vscode.TextEditor) {
+  private createTimerDecoration(
+    ranges: vscode.Range[],
+    editor: vscode.TextEditor,
+    timerLocation: Location['timerLocation'],
+  ) {
     if (this.decorationTimer) {
       clearTimeout(this.decorationTimer);
     }
@@ -127,28 +145,28 @@ export class WalkMode implements Mode {
         return;
       }
 
-      const timerWidth = (timeLeft / this.timerDuration) * 1.5;
+      const { timerColor, timerShadowColor } = this.getTimerColor();
 
+      const timerWidth = (timeLeft / this.timerDuration) * 4;
       this.timerDecorator?.dispose();
       this.timerDecorator = vscode.window.createTextEditorDecorationType({
         before: {
           contentText: '',
-          backgroundColor: 'white',
+          backgroundColor: `${timerColor}`,
           width: `${timerWidth}em`,
-          color: 'white',
           height: '8px',
           margin: '0.25em 0 0 0',
           textDecoration: `none; ${objectToCssString({
-            'box-shadow': `0px 0px 15px #015dee`,
+            'box-shadow': `0px 0px 15px ${timerShadowColor}`,
             position: 'absolute',
+            /**
+             * NOTE: Junbae go out of screen when horizontal scroll
+             * If you want to limit position of Junbae, use `%`
+             */
             right: '5vw',
-            top: '5%',
-            'font-size': '40px',
-            'font-family': 'monospace',
-            'font-weight': '900',
+            ...timerLocation,
             'z-index': 1,
             'pointer-events': 'none',
-            'text-align': 'center',
           })}`,
         },
         rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
@@ -158,5 +176,41 @@ export class WalkMode implements Mode {
     };
 
     this.decorationTimer = setInterval(updateComboTimerDecoration, 50);
+  }
+
+  private getLocation(firstVisibleRange: vscode.Range): Location {
+    const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
+
+    switch (location) {
+      case 'bottom':
+        return {
+          range: new vscode.Range(firstVisibleRange.end, firstVisibleRange.end),
+          junbaeLocation: { 'font-size': '100px', bottom: '10px' },
+          timerLocation: { bottom: '70px' },
+        };
+      default:
+        return {
+          range: new vscode.Range(firstVisibleRange.start, firstVisibleRange.start),
+          junbaeLocation: { top: '5%', 'font-size': '50px' },
+          timerLocation: { top: '5%' },
+        };
+    }
+  }
+
+  private getTimerColor(): TimerColor {
+    const timerColorName = vscode.workspace.getConfiguration('junbae-mode').get('timerColor');
+
+    switch (timerColorName) {
+      case 'red':
+        return {
+          timerColor: '#C54B65',
+          timerShadowColor: '#FFC0CB',
+        };
+      default:
+        return {
+          timerColor: 'white',
+          timerShadowColor: '#015dee',
+        };
+    }
   }
 }
