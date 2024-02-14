@@ -161,24 +161,20 @@ export class WalkMode implements Mode {
   private getLocation(firstVisibleRange: vscode.Range) {
     const location = vscode.workspace.getConfiguration('junbae-mode').get('location');
 
-    let visibleStartLine = firstVisibleRange.start;
-    let visibleEndLine = firstVisibleRange.start;
-    const junbaeLocation = { top: '5%', 'font-size': '50px', bottom: 'none' };
-    const timerLocation = { top: '5%', bottom: 'none' };
-
-    if (location === 'bottom') {
-      visibleStartLine = firstVisibleRange.end;
-      visibleEndLine = firstVisibleRange.end;
-      junbaeLocation.top = 'none';
-      junbaeLocation.bottom = '10px';
-      junbaeLocation['font-size'] = '100px';
-      timerLocation.top = 'none';
-      timerLocation.bottom = '70px';
+    switch (location) {
+      case 'bottom':
+        return {
+          range: new vscode.Range(firstVisibleRange.end, firstVisibleRange.end),
+          junbaeLocation: { top: 'none', 'font-size': '100px', bottom: '10px' },
+          timerLocation: { top: 'none', bottom: '70px' },
+        };
+      default:
+        return {
+          range: new vscode.Range(firstVisibleRange.start, firstVisibleRange.start),
+          junbaeLocation: { top: '5%', 'font-size': '50px', bottom: 'none' },
+          timerLocation: { top: '5%', bottom: 'none' },
+        };
     }
-
-    const range = new vscode.Range(visibleStartLine, visibleEndLine);
-
-    return { junbaeLocation, timerLocation, range };
   }
 
   private getTimerColor() {
@@ -192,7 +188,7 @@ export class WalkMode implements Mode {
       timerColors.timerColor = '#C54B65';
       timerColors.timerShadowColor = '#FFC0CB';
     }
-    
+
     return timerColors;
   }
 }
