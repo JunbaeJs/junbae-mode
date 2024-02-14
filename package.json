@@ -1,7 +1,8 @@
 {
   "name": "junbae-mode",
   "displayName": "Junbae Mode",
-  "version": "0.0.1",
+  "icon": "images/junbae-logo.png",
+  "version": "1.0.0",
   "description": "Junbae is caique parrot!",
   "main": "./dist/extension.js",
   "publisher": "JunbaeJs",
@@ -54,8 +55,69 @@
   "contributes": {
     "commands": [
       {
+        "command": "junbae-mode.enable",
+        "title": "Enable Junbae Mode",
+        "when": "!config.junbae-mode.enabled",
+        "enablement": "!config.junbae-mode.enabled"
+      },
+      {
+        "command": "junbae-mode.disable",
+        "title": "Disable Junbae Mode",
+        "when": "config.junbae-mode.enabled",
+        "enablement": "config.junbae-mode.enabled"
+      },
+      {
         "command": "junbae-mode.helloWorld",
         "title": "Hello World"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "General",
+        "order": 0,
+        "properties": {
+          "junbae-mode.enabled": {
+            "order": 0,
+            "default": true,
+            "type": "boolean",
+            "description": "Enable Junbae Mode"
+          }
+        }
+      },
+      {
+        "title": "Mode",
+        "order": 1,
+        "properties": {
+          "junbae-mode.Mode": {
+            "order": 0,
+            "type": "string",
+            "default": "Walk",
+            "enum": [
+              "Walk"
+            ],
+            "markdownDescription": "You can choose the mode of Junbae."
+          },
+          "junbae-mode.location": {
+            "order": 1,
+            "type": "string",
+            "default": "top",
+            "enum": [
+              "top",
+              "bottom"
+            ],
+            "markdownDescription": "You can choose location of junbae on the screen."
+          },
+          "junbae-mode.timerColor": {
+            "order": 2,
+            "type": "string",
+            "default": "white",
+            "enum": [
+              "white",
+              "red"
+            ],
+            "markdownDescription": "You can choose timer color."
+          }
+        }
       }
     ]
   }
