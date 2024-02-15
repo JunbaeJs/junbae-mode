@@ -94,7 +94,6 @@ export class WalkMode implements Mode {
       return;
     }
 
-    this.walkDecoration?.dispose();
     const decoration = vscode.window.createTextEditorDecorationType({
       after: {
         contentText: ``,
@@ -118,6 +117,7 @@ export class WalkMode implements Mode {
       },
       rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
     });
+    this.walkDecoration?.dispose();
     this.walkDecoration = decoration;
     editor.setDecorations(this.walkDecoration, ranges);
   };
@@ -148,8 +148,7 @@ export class WalkMode implements Mode {
       const { timerColor, timerShadowColor } = this.getTimerColor();
 
       const timerWidth = (timeLeft / this.timerDuration) * 4;
-      this.timerDecorator?.dispose();
-      this.timerDecorator = vscode.window.createTextEditorDecorationType({
+      const decoration = vscode.window.createTextEditorDecorationType({
         before: {
           contentText: '',
           backgroundColor: `${timerColor}`,
@@ -171,6 +170,8 @@ export class WalkMode implements Mode {
         },
         rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
       });
+      this.timerDecorator?.dispose();
+      this.timerDecorator = decoration;
 
       editor.setDecorations(this.timerDecorator, ranges);
     };
