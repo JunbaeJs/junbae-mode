@@ -2,7 +2,7 @@
   "name": "junbae-mode",
   "displayName": "Junbae Mode",
   "icon": "images/junbae-logo.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Junbae is caique parrot!",
   "main": "./dist/extension.js",
   "publisher": "JunbaeJs",
