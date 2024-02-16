@@ -15,6 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
   const enable = vscode.commands.registerCommand('junbae-mode.enable', () => mode.setEnabled(true));
   const disable = vscode.commands.registerCommand('junbae-mode.disable', () => mode.setEnabled(false));
   vscode.workspace.onDidChangeTextDocument(mode.onDidChangeTextDocument);
+  vscode.workspace.onDidChangeConfiguration(mode.onDidChangeConfiguration);
 
   context.subscriptions.push(enable);
   context.subscriptions.push(disable);
