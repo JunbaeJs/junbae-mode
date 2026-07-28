@@ -94,26 +94,43 @@ export class WalkMode implements Mode {
       return;
     }
 
+    const junbaeStyle = objectToCssString({
+      width: '50px',
+      height: '50px',
+      'background-size': 'contain',
+      'background-repeat': 'no-repeat',
+      'background-image': `url("${motions[this.combo % motions.length]}")`,
+      position: 'absolute',
+      margin: '0.5em 0 0 0',
+      ...junbaeLocation,
+      'z-index': 1,
+      'pointer-events': 'none',
+    });
+
     const decoration = vscode.window.createTextEditorDecorationType({
+      /**
+       * VS Code 1.88+ shrink-wraps line spans to their rendered text.
+       * Render against the editor frame so text width and scrolling cannot move Junbae.
+       */
+      isWholeLine: true,
+      textDecoration: `none;
+        .editor-scrollable:has(&) {
+          container-type: size;
+        }
+        .editor-scrollable:has(&) > .scrollbar.horizontal.invisible {
+          opacity: 1;
+          background: transparent;
+        }
+        .editor-scrollable:has(&) > .scrollbar.horizontal.invisible > * {
+          opacity: 0;
+        }
+        .editor-scrollable:has(&) > .scrollbar.horizontal::after {
+          content: "";
+          right: 5vw;
+          ${junbaeStyle}
+        }`,
       after: {
-        contentText: ``,
-        margin: '0.5em 0 0 0',
-        textDecoration: `none; ${objectToCssString({
-          width: '50px',
-          height: '50px',
-          'background-size': 'contain',
-          'background-repeat': 'no-repeat',
-          'background-image': `url("${motions[this.combo % motions.length]}")`,
-          position: 'absolute',
-          /**
-           * NOTE: Junbae go out of screen when horizontal scroll
-           * If you want to limit position of Junbae, use `%`
-           */
-          right: '5vw',
-          ...junbaeLocation,
-          'z-index': 1,
-          'pointer-events': 'none',
-        })}`,
+        contentText: '',
       },
       rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
     });
@@ -148,25 +165,27 @@ export class WalkMode implements Mode {
       const { timerColor, timerShadowColor } = this.getTimerColor();
 
       const timerWidth = (timeLeft / this.timerDuration) * 4;
+      const timerStyle = objectToCssString({
+        'background-color': timerColor,
+        width: `${timerWidth}em`,
+        height: '8px',
+        margin: '0.25em 0 0 0',
+        'box-shadow': `0px 0px 15px ${timerShadowColor}`,
+        position: 'absolute',
+        ...timerLocation,
+        'z-index': 1,
+        'pointer-events': 'none',
+      });
       const decoration = vscode.window.createTextEditorDecorationType({
+        isWholeLine: true,
+        textDecoration: `none;
+          .editor-scrollable:has(&) > .scrollbar.horizontal::before {
+            content: "";
+            right: 5vw;
+            ${timerStyle}
+          }`,
         before: {
           contentText: '',
-          backgroundColor: `${timerColor}`,
-          width: `${timerWidth}em`,
-          height: '8px',
-          margin: '0.25em 0 0 0',
-          textDecoration: `none; ${objectToCssString({
-            'box-shadow': `0px 0px 15px ${timerShadowColor}`,
-            position: 'absolute',
-            /**
-             * NOTE: Junbae go out of screen when horizontal scroll
-             * If you want to limit position of Junbae, use `%`
-             */
-            right: '5vw',
-            ...timerLocation,
-            'z-index': 1,
-            'pointer-events': 'none',
-          })}`,
         },
         rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
       });
@@ -185,15 +204,15 @@ export class WalkMode implements Mode {
     switch (location) {
       case 'bottom':
         return {
-          range: new vscode.Range(firstVisibleRange.end, firstVisibleRange.end),
+          range: new vscode.Range(firstVisibleRange.start, firstVisibleRange.start),
           junbaeLocation: { 'font-size': '100px', bottom: '10px' },
           timerLocation: { bottom: '70px' },
         };
       default:
         return {
           range: new vscode.Range(firstVisibleRange.start, firstVisibleRange.start),
-          junbaeLocation: { top: '5%', 'font-size': '50px' },
-          timerLocation: { top: '5%' },
+          junbaeLocation: { top: 'calc(-100cqh + 100% + 1px)', 'font-size': '50px' },
+          timerLocation: { top: 'calc(-100cqh + 100% + 1px)' },
         };
     }
   }
